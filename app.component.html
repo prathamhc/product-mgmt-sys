@@ -1,0 +1,44 @@
+<div class="container">
+    <h2>Product Inventory</h2>
+
+    <div class="card">
+        <h3>{{ editId ? 'Update Product' : 'Add Product' }}</h3>
+
+        <input type="number" placeholder="Product Code" [(ngModel)]="product.pro_code">
+        <input type="text" placeholder="Product Name" [(ngModel)]="product.pro_name">
+        <input type="text" placeholder="Category" [(ngModel)]="product.pro_category">
+        <input type="number" placeholder="Price" [(ngModel)]="product.price">
+
+        <div class="btn-group">
+            <button class="primary" (click)="saveProduct()">
+                {{ editId ? 'Update' : 'Add' }}
+            </button>
+            <button class="secondary" (click)="resetForm()">Clear</button>
+        </div>
+    </div>
+
+    <table *ngIf="products.length">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let p of products">
+                <td>{{ p.pro_code }}</td>
+                <td>{{ p.pro_name }}</td>
+                <td>{{ p.pro_category }}</td>
+                <td>₹ {{ p.price }}</td>
+                <td>
+                    <button class="edit" (click)="editProduct(p)">Edit</button>
+                    <button class="delete" (click)="deleteProduct(p._id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
