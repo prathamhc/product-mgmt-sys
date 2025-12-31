@@ -22,7 +22,6 @@ export class AppComponent {
         this.loadProducts();
     }
 
-    // READ
     loadProducts() {
         this.http.get<any[]>(this.apiUrl).subscribe({
             next: res => this.products = res,
@@ -30,7 +29,6 @@ export class AppComponent {
         });
     }
 
-    // CREATE + UPDATE
     saveProduct() {
 
         const { pro_code, pro_name, pro_category, price } = this.product;
@@ -60,13 +58,11 @@ export class AppComponent {
         });
     }
 
-    // EDIT
     editProduct(p: any) {
         this.product = { ...p };
         this.editId = p._id;
     }
 
-    // DELETE
     deleteProduct(id: string) {
         if (!confirm('Are you sure you want to delete?')) return;
 
@@ -76,7 +72,6 @@ export class AppComponent {
         });
     }
 
-    // RESET
     resetForm() {
         this.product = {};
         this.editId = null;
